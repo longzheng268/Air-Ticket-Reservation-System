@@ -1,2 +1,5 @@
-# Auto detect text files and perform LF normalization
-* text=Java
+# 将所有 .html 文件标记为“生成文件”，GitHub 在统计语言时将忽略它们
+*.html linguist-generated=true
+
+# 确保 Java 文件被正确识别和统计
+*.java linguist-language=Java
