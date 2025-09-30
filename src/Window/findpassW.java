@@ -35,7 +35,7 @@ public class findpassW {
             e.printStackTrace();
         }
         Scene scene=new Scene(root2,300,360);
-        finfpwStage2.setTitle("æ‰¾å›å¯†ç ");
+        finfpwStage2.setTitle("ÕÒ»ØÃÜÂë");
         finfpwStage2.setScene(scene);
         finfpwStage2.initStyle(StageStyle.UTILITY);
 
@@ -65,22 +65,22 @@ public class findpassW {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle(" ");
                         alert.setHeaderText("");
-                        alert.setContentText("æ‰¾å›å¯†ç æˆåŠŸ");
+                        alert.setContentText("ÕÒ»ØÃÜÂë³É¹¦");
 
                         alert.showAndWait();
                         finfpwStage2.hide();
-                        //ä¿®æ”¹æˆåŠŸ
+                        //ĞŞ¸Ä³É¹¦
                         break;
                     case 1:
-                        Alert fp1 = new Alert(Alert.AlertType.ERROR,"2æ¬¡å¯†ç ä¸åŒ¹é…");
+                        Alert fp1 = new Alert(Alert.AlertType.ERROR,"2´ÎÃÜÂë²»Æ¥Åä");
                         fp1.showAndWait();
                         break;
                     case 2:
-                        Alert fp2 = new Alert(Alert.AlertType.ERROR,"èº«ä»½è¯å·ç ä¸åŒ¹é…");
+                        Alert fp2 = new Alert(Alert.AlertType.ERROR,"Éí·İÖ¤ºÅÂë²»Æ¥Åä");
                         fp2.showAndWait();
                         break;
                     case 3:
-                        Alert fp3 = new Alert(Alert.AlertType.ERROR,"è¯¥è´¦å·æ²¡æœ‰æ³¨å†Œ");
+                        Alert fp3 = new Alert(Alert.AlertType.ERROR,"¸ÃÕËºÅÃ»ÓĞ×¢²á");
                         fp3.showAndWait();
                         System.out.print("3");
                         break;

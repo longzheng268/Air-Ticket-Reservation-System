@@ -13,7 +13,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.awt.*;
 
 
@@ -36,7 +35,8 @@ public class LoginWindow extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/login.fxml"));
-        primaryStage.setTitle("æœºç¥¨é¢„è®¢ç³»ç»Ÿ");
+        primaryStage.setTitle("»úÆ±Ô¤¶©ÏµÍ³");
+        System.out.println("DPI"+Toolkit.getDefaultToolkit().getScreenResolution());
         primaryStage.setScene(new Scene(root, 340, 300));
         primaryStage.initStyle(StageStyle.UTILITY);
 
@@ -73,15 +73,15 @@ public class LoginWindow extends Application {
                     try {
                         switch (dl.isexst_admin(userTextField.getText(), pwBox.getText())) {
                             case 0:
-                                Alert cw1 = new Alert(Alert.AlertType.ERROR,"è¯¥è´¦å·æ²¡æœ‰æ³¨å†Œ");
+                                Alert cw1 = new Alert(Alert.AlertType.ERROR,"¸ÃÕËºÅÃ»ÓĞ×¢²á");
                                 cw1.showAndWait();
                                 break;
                             case 1:
-                                Alert cw2 = new Alert(Alert.AlertType.ERROR,"å¯†ç é”™è¯¯");
+                                Alert cw2 = new Alert(Alert.AlertType.ERROR,"ÃÜÂë´íÎó");
                                 cw2.showAndWait();
                                 break;
                             case 2:
-                                //ç™»é™†æˆåŠŸ
+                                //µÇÂ½³É¹¦
                                 ManagerWindow managerWindow = new ManagerWindow();
                                 primaryStage.hide();
                                 break;
@@ -95,18 +95,18 @@ public class LoginWindow extends Application {
                     try {
                         switch (dl.isexst_user(userTextField.getText(), pwBox.getText())) {
                             case 0:
-                                Alert cw1 = new Alert(Alert.AlertType.ERROR,"è¯¥è´¦å·æ²¡æœ‰æ³¨å†Œ");
+                                Alert cw1 = new Alert(Alert.AlertType.ERROR,"¸ÃÕËºÅÃ»ÓĞ×¢²á");
                                 cw1.showAndWait();
                                 break;
                             case 1:
-                                Alert cw2 = new Alert(Alert.AlertType.ERROR,"å¯†ç é”™è¯¯");
+                                Alert cw2 = new Alert(Alert.AlertType.ERROR,"ÃÜÂë´íÎó");
                                 cw2.showAndWait();
                                 break;
                             case 2:
-                                //ç™»é™†æˆåŠŸ
+                                //µÇÂ½³É¹¦
                                 UserWindow userWindow=new UserWindow(userTextField.getText());
                                 primaryStage.hide();
-                                // System.out.println("ç™»é™†æˆåŠŸ");
+                                 System.out.println("µÇÂ½³É¹¦");
                                 break;
                         }
                     } catch (Exception e) {
@@ -136,8 +136,6 @@ public class LoginWindow extends Application {
 
 
     }
-
-
 
 
     public static void main(String[] args) {

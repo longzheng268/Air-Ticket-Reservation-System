@@ -122,15 +122,15 @@ public class UserUtils extends MysqlUtils{
                         params.add(d);
                         this.updateByPreparedStatement(sql,params);
                         // System.out.print(sql);
-                        //ä¿®æ”¹æˆåŠŸ
+                        //ĞŞ¸Ä³É¹¦
                         n=0;
                     }
                     if(!b.equals(c))n=1;
                 }
-                else n=2;//èº«ä»½è¯å·ç ä¸åŒ¹é…
+                else n=2;//Éí·İÖ¤ºÅÂë²»Æ¥Åä
             }
         }
-        if(!ex)n=3;//è¯¥è´¦å·æ²¡æœ‰æ³¨å†Œ
+        if(!ex)n=3;//¸ÃÕËºÅÃ»ÓĞ×¢²á
 
      //   resultSet.close();
         return n;
@@ -157,7 +157,7 @@ public class UserUtils extends MysqlUtils{
         return c;
     }
 
-//é€‰æ‹©å…¨éƒ¨ç”¨æˆ·
+//Ñ¡ÔñÈ«²¿ÓÃ»§
     public List<Map<String,Object>> SelectAllUser()
     {
         String sql="SELECT * FROM airlineticket.user";
@@ -187,7 +187,7 @@ public class UserUtils extends MysqlUtils{
     }
 
 
-    //æ¨¡ç³ŠæŸ¥è¯¢ç”¨æˆ·  attributeå±æ€§ parasä¸ºå‚æ•°
+    //Ä£ºı²éÑ¯ÓÃ»§  attributeÊôĞÔ parasÎª²ÎÊı
     public List<Map<String,Object>> Select_Where_A_like_B(String attribute,List<Object> paras)
     {            // like '%?%'
         String sql="SELECT * FROM airlineticket.user where "+attribute+" like ?";
@@ -201,7 +201,7 @@ public class UserUtils extends MysqlUtils{
         return  list;
     }
 
-    /*  åˆ é™¤ä¸€ä¸ªç”¨æˆ· é€šè¿‡ID */
+    /*  É¾³ıÒ»¸öÓÃ»§ Í¨¹ıID */
     public boolean DeleteUserById(List<Object>params)
     {
         String sql="DELETE FROM `airlineticket`.`user` WHERE `sfz`=?";
@@ -218,7 +218,7 @@ public class UserUtils extends MysqlUtils{
 
 
 
-    /* æ›´æ–°ç”¨æˆ·ä¿¡æ¯é€šè¿‡ID*/
+    /* ¸üĞÂÓÃ»§ĞÅÏ¢Í¨¹ıID*/
     public boolean UpDate_A_By_ID (String attr ,List <Object> params)
     {
 

@@ -26,7 +26,7 @@ public class RegistWindow {
         }
         catch(Exception e){e.printStackTrace();}
         Scene scene=new Scene(root,320,580);
-        registerStage.setTitle("æ³¨å†Œ");
+        registerStage.setTitle("×¢²á");
         registerStage.setScene(scene);
         registerStage.initStyle(StageStyle.UTILITY);
         registerStage.show();
@@ -53,38 +53,38 @@ public class RegistWindow {
                 UserUtils m_re = new UserUtils();
               //  m_re.getConnection();
                 int agree = 0;
-                String sex = "ç”·";
+                String sex = "ÄĞ";
                 if(cb1.isSelected()){agree=1;//System.out.print("tongyi");
                 }
-                if(rb2.isSelected()){sex="å¥³";//System.out.print("nv");
+                if(rb2.isSelected()){sex="Å®";//System.out.print("nv");
                 }
 
                 try {
                     switch (m_re.re_user(tf1.getText(), tf2.getText(), tf3.getText(),tf4.getText(),sex,tf6.getText(),agree)) {
                         case 0:
-                            //è¯·è®¤çœŸé˜…è¯»å£°æ˜æ¡æ¬¾
+                            //ÇëÈÏÕæÔÄ¶ÁÉùÃ÷Ìõ¿î
                             //System.out.print("0");
-                            Alert rcw0 = new Alert(Alert.AlertType.WARNING,"è¯·è®¤çœŸé˜…è¯»å£°æ˜æ¡æ¬¾");
+                            Alert rcw0 = new Alert(Alert.AlertType.WARNING,"ÇëÈÏÕæÔÄ¶ÁÉùÃ÷Ìõ¿î");
                             rcw0.showAndWait();
                             break;
                         case 1:
-                            //ç”¨æˆ·åè¢«ä½¿ç”¨
+                            //ÓÃ»§Ãû±»Ê¹ÓÃ
                            // System.out.print("1");
-                            Alert rcw1 = new Alert(Alert.AlertType.WARNING,"ç”¨æˆ·åè¢«ä½¿ç”¨");
+                            Alert rcw1 = new Alert(Alert.AlertType.WARNING,"ÓÃ»§Ãû±»Ê¹ÓÃ");
                             rcw1.showAndWait();
                             break;
                         case 2:
-                            //å¯†ç ä¸ä¸€è‡´
+                            //ÃÜÂë²»Ò»ÖÂ
                             //System.out.print("2");
-                            Alert rcw2 = new Alert(Alert.AlertType.WARNING,"2æ¬¡è¾“å…¥å¯†ç ä¸ä¸€è‡´");
+                            Alert rcw2 = new Alert(Alert.AlertType.WARNING,"2´ÎÊäÈëÃÜÂë²»Ò»ÖÂ");
                             rcw2.showAndWait();
                             break;
                         case 3:
-                            //æ³¨å†ŒæˆåŠŸ
+                            //×¢²á³É¹¦
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle(" ");
                             alert.setHeaderText(null);
-                            alert.setContentText("æ³¨å†ŒæˆåŠŸ");
+                            alert.setContentText("×¢²á³É¹¦");
 
                             alert.showAndWait();
                             registerStage.hide();

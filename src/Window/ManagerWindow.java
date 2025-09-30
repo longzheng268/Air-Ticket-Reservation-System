@@ -77,10 +77,10 @@ public class ManagerWindow {
 
     private Stage FlightStage;
 
-    private MenuItem addflight=new MenuItem("æ·»åŠ èˆªç­");
-    private MenuItem deleteflight=new MenuItem("åˆ é™¤èˆªç­");
-    private MenuItem deleteuser=new MenuItem("åˆ é™¤ç”¨æˆ·");
-    private MenuItem deleteOrder=new MenuItem("åˆ é™¤è®¢å•");
+    private MenuItem addflight=new MenuItem("Ìí¼Óº½°à");
+    private MenuItem deleteflight=new MenuItem("É¾³ıº½°à");
+    private MenuItem deleteuser=new MenuItem("É¾³ıÓÃ»§");
+    private MenuItem deleteOrder=new MenuItem("É¾³ı¶©µ¥");
 
 
     public ManagerWindow(){
@@ -93,13 +93,13 @@ public class ManagerWindow {
         }
 
         Scene scene=new Scene(root,1024,768);
-        FlightStage.setTitle("ç®¡ç†å‘˜");
+        FlightStage.setTitle("¹ÜÀíÔ±");
         FlightStage.setScene(scene);
         FlightStage.initStyle(StageStyle.UTILITY);
         FlightStage.show();
 
 
-        /* è¿æ¥æ•°æ®åº“*/
+        /* Á¬½ÓÊı¾İ¿â*/
       flightUtils=new FlightUtils();
       userUtils=new UserUtils();
       orderUtils=new OrderUtils();
@@ -118,12 +118,12 @@ public class ManagerWindow {
 
 
 
-   //åˆå§‹åŒ–æ§ä»¶
+   //³õÊ¼»¯¿Ø¼ş
     public void InitFlightControl(){
 
 
 
-        //å¯»æ‰¾æ§ä»¶
+        //Ñ°ÕÒ¿Ø¼ş
         FlightTable=(TableView)root.lookup("#FlightTable");
         FlightObList=FXCollections.observableArrayList();
 
@@ -139,7 +139,7 @@ public class ManagerWindow {
         flightParams.getSelectionModel().select(0);
 
 
-        //è®¾ç½®å³é”®
+        //ÉèÖÃÓÒ¼ü
         ContextMenu cm_flighttable=new ContextMenu();
         cm_flighttable.getItems().add(addflight);
         cm_flighttable.getItems().add(deleteflight);
@@ -148,24 +148,24 @@ public class ManagerWindow {
         FlightTable.setContextMenu(cm_flighttable);
 
 
-          /*ç»‘å®šFlight ä¸ observablelist*/
+          /*°ó¶¨Flight Óë observablelist*/
         String[] flightpara=new String[] {"id","com","model","stime","etime","start","dist","price","left"};
 
         ObservableList<TableColumn> flight_observableList=FlightTable.getColumns();
 
         for(int i=0;i<flight_observableList.size();i++)
         {
-            //å…ˆç»‘å®š
-            flight_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Flight,String>(flightpara[i])); //ä¸Flightä¸­çš„å±æ€§å…³è”
+            //ÏÈ°ó¶¨
+            flight_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Flight,String>(flightpara[i])); //ÓëFlightÖĞµÄÊôĞÔ¹ØÁª
             if(i!=7&&i!=8)
-            flight_observableList.get(i).setCellFactory(TextFieldTableCell.<Flight>forTableColumn());  // è®¾ç½®æˆè¡¨æ ¼å¯ç¼–è¾‘
+            flight_observableList.get(i).setCellFactory(TextFieldTableCell.<Flight>forTableColumn());  // ÉèÖÃ³É±í¸ñ¿É±à¼­
         }
-        flight_observableList.get(7).setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter())); // float è½¬string å‡ºé”™ é»˜è®¤ä¸å¸¦è½¬æ¢å™¨
-        flight_observableList.get(8).setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));  //åŒä¸Š
+        flight_observableList.get(7).setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter())); // float ×ªstring ³ö´í Ä¬ÈÏ²»´ø×ª»»Æ÷
+        flight_observableList.get(8).setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));  //Í¬ÉÏ
 
    EditFlightTable(flight_observableList);
 
-        /*ä»æ•°æ®åº“ä¸­è·å– èˆªç­ä¿¡æ¯ åŠ å…¥åˆ°FlightList*/
+        /*´ÓÊı¾İ¿âÖĞ»ñÈ¡ º½°àĞÅÏ¢ ¼ÓÈëµ½FlightList*/
 
         List<Map<String,Object>> list =flightUtils.SelectAllFlight();
 
@@ -174,7 +174,7 @@ public class ManagerWindow {
     }
 
     public void InitUserControl(){
-        //å¯»æ‰¾æ§ä»¶
+        //Ñ°ÕÒ¿Ø¼ş
         UserTable=(TableView)root.lookup("#UserTable");
         UserObList=FXCollections.observableArrayList();
 
@@ -192,17 +192,17 @@ public class ManagerWindow {
        cm_usertable.getItems().add(deleteuser);
        UserTable.setContextMenu(cm_usertable);
 
-        /*ç»‘å®šUser  ä¸ observablelist*/
+        /*°ó¶¨User  Óë observablelist*/
         String[] userpara=new String[] {"user","password","name","sex","identity","phone","email"};
 
         ObservableList<TableColumn> user_observableList=UserTable.getColumns();
 
         for(int i=0;i<user_observableList.size();i++)
         {
-            //å…ˆç»‘å®š
-            user_observableList.get(i).setCellValueFactory(new PropertyValueFactory<User,String>(userpara[i])); //ä¸Userä¸­çš„å±æ€§å…³è”
+            //ÏÈ°ó¶¨
+            user_observableList.get(i).setCellValueFactory(new PropertyValueFactory<User,String>(userpara[i])); //ÓëUserÖĞµÄÊôĞÔ¹ØÁª
 
-            user_observableList.get(i).setCellFactory(TextFieldTableCell.<User>forTableColumn());  // è®¾ç½®æˆè¡¨æ ¼å¯ç¼–è¾‘
+            user_observableList.get(i).setCellFactory(TextFieldTableCell.<User>forTableColumn());  // ÉèÖÃ³É±í¸ñ¿É±à¼­
         }
 
       EditUserTable(user_observableList);
@@ -229,7 +229,7 @@ public class ManagerWindow {
 
     public void InitOrderControl(){
 
-        //å¯»æ‰¾æ§ä»¶
+        //Ñ°ÕÒ¿Ø¼ş
         OrderTable=(TableView)root.lookup("#OrderTable");
         OrderObList=FXCollections.observableArrayList();
 
@@ -244,7 +244,7 @@ public class ManagerWindow {
         orderparams.setItems(FXCollections.observableArrayList(orderMap.keySet()));
         orderparams.getSelectionModel().select(0);
 
-        //è®¾ç½®å³é”®
+        //ÉèÖÃÓÒ¼ü
         ContextMenu cm_ordertable=new ContextMenu();
         cm_ordertable.getItems().add(deleteOrder);
         OrderTable.setContextMenu(cm_ordertable);
@@ -254,12 +254,12 @@ public class ManagerWindow {
         String []orderpara=new String[]{"orderid","p_name","p_id","f_id","f_com","f_model","f_stime","f_etime","f_start","f_end","f_price"};
         ObservableList<TableColumn> Order_observableList=OrderTable.getColumns();
         for(int i=0;i<Order_observableList.size();i++) {
-            Order_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Order,String>(orderpara[i])); //ä¸Orderä¼—çš„å±æ€§å…³è”
+            Order_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Order,String>(orderpara[i])); //ÓëOrderÖÚµÄÊôĞÔ¹ØÁª
 
-            Order_observableList.get(i).setCellFactory(TextFieldTableCell.<Order>forTableColumn());  //è®¾ç½®è¡¨æ ¼å¯ç¼–è¾‘
+            Order_observableList.get(i).setCellFactory(TextFieldTableCell.<Order>forTableColumn());  //ÉèÖÃ±í¸ñ¿É±à¼­
         }
 
-      EditOrderTable(Order_observableList);  //ç¼–è¾‘è¡¨æ ¼äº‹ä»¶
+      EditOrderTable(Order_observableList);  //±à¼­±í¸ñÊÂ¼ş
 
 
         List<Map<String,Object>> list =orderUtils.SelectAllOrder();
@@ -279,9 +279,9 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                // ç•Œé¢ä¿®æ”¹èˆªç­ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Äº½°àĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
 
@@ -294,8 +294,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
 
@@ -308,8 +308,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
-                paras.add(event.getNewValue().toString());  // //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
+                paras.add(event.getNewValue().toString());  // //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
                 if( flightUtils.UpDate_A_By_ID("f_model",paras) ){
                     ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setModel(event.getNewValue().toString());
@@ -320,8 +320,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
-                paras.add(event.getNewValue().toString());  // //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
+                paras.add(event.getNewValue().toString());  // //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
                 if( flightUtils.UpDate_A_By_ID("f_stime",paras) ){
                     ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setStime(event.getNewValue().toString());
@@ -332,8 +332,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
-                paras.add(event.getNewValue().toString());  // //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
+                paras.add(event.getNewValue().toString());  // //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
                 if( flightUtils.UpDate_A_By_ID("f_etime",paras) ){
                     ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setEtime(event.getNewValue().toString());
@@ -344,8 +344,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
-                paras.add(event.getNewValue().toString());  // //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
+                paras.add(event.getNewValue().toString());  // //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
                 if( flightUtils.UpDate_A_By_ID("f_start",paras) ){
                     ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setStart(event.getNewValue().toString());
@@ -356,8 +356,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
-                paras.add(event.getNewValue().toString());  // //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
+                paras.add(event.getNewValue().toString());  // //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
                 if( flightUtils.UpDate_A_By_ID("f_dist",paras) ){
                     ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setDist(event.getNewValue().toString());
@@ -368,8 +368,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
-                paras.add(event.getNewValue().toString());  // //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
+                paras.add(event.getNewValue().toString());  // //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
                 if( flightUtils.UpDate_A_By_ID("f_price",paras) ){
                     ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setPrice(Float.parseFloat(event.getNewValue().toString()));
@@ -380,8 +380,8 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
-                paras.add(event.getNewValue().toString());  // //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
+                paras.add(event.getNewValue().toString());  // //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
                 paras.add( ((Flight) FlightTable.getSelectionModel().getSelectedItem()).getId());
                 if( flightUtils.UpDate_A_By_ID("f_left",paras) ){
                     ((Flight) FlightTable.getSelectionModel().getSelectedItem()).setLeft(Integer.parseInt(event.getNewValue().toString()));
@@ -392,12 +392,12 @@ public class ManagerWindow {
 
     private void EditUserTable( ObservableList<TableColumn> user_observableList)
     {
-        // ç•Œé¢ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯
+        // ½çÃæĞŞ¸ÄÓÃ»§ĞÅÏ¢
         user_observableList.get(0).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
 
@@ -412,8 +412,8 @@ public class ManagerWindow {
         user_observableList.get(1).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
 
@@ -429,8 +429,8 @@ public class ManagerWindow {
         user_observableList.get(2).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
 
@@ -444,8 +444,8 @@ public class ManagerWindow {
         user_observableList.get(3).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
 
@@ -459,8 +459,8 @@ public class ManagerWindow {
         user_observableList.get(4).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
 
@@ -474,8 +474,8 @@ public class ManagerWindow {
         user_observableList.get(5).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
 
@@ -489,8 +489,8 @@ public class ManagerWindow {
         user_observableList.get(6).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
                 paras.add( ((User) UserTable.getSelectionModel().getSelectedItem()).getIdentity());
 
@@ -509,11 +509,11 @@ public class ManagerWindow {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
                 //String sql="UPDATE `airlineticket`.`flight` SET "+ attr +"= ? WHERE `f_id`=?";
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("orderid",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setOrderid(event.getNewValue().toString());
@@ -524,11 +524,11 @@ public class ManagerWindow {
         Order_observableList.get(1).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("p_name",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setP_name(event.getNewValue().toString());
@@ -539,11 +539,11 @@ public class ManagerWindow {
         Order_observableList.get(2).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("p_id",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setP_id(event.getNewValue().toString());
@@ -554,11 +554,11 @@ public class ManagerWindow {
         Order_observableList.get(3).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_id",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_id(event.getNewValue().toString());
@@ -569,11 +569,11 @@ public class ManagerWindow {
         Order_observableList.get(4).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_com",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_com(event.getNewValue().toString());
@@ -584,11 +584,11 @@ public class ManagerWindow {
         Order_observableList.get(5).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_model",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_model(event.getNewValue().toString());
@@ -599,11 +599,11 @@ public class ManagerWindow {
         Order_observableList.get(6).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_stime",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_stime(event.getNewValue().toString());
@@ -614,11 +614,11 @@ public class ManagerWindow {
         Order_observableList.get(7).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_etime",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_etime(event.getNewValue().toString());
@@ -629,11 +629,11 @@ public class ManagerWindow {
         Order_observableList.get(8).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_start",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_start(event.getNewValue().toString());
@@ -644,11 +644,11 @@ public class ManagerWindow {
         Order_observableList.get(9).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_end",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_end(event.getNewValue().toString());
@@ -659,11 +659,11 @@ public class ManagerWindow {
         Order_observableList.get(10).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
             @Override
             public void handle(TableColumn.CellEditEvent event) {
-                // ç•Œé¢ä¿®æ”¹è®¢å•ä¿¡æ¯
-                String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-                List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+                // ½çÃæĞŞ¸Ä¶©µ¥ĞÅÏ¢
+                String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+                List<Object> paras=new ArrayList<Object>();      //´«²Î
                 paras.add(a_value);
-                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //è·å–è®¢å•id
+                paras.add( ((Order) OrderTable.getSelectionModel().getSelectedItem()).getOrderid()); //»ñÈ¡¶©µ¥id
 
                 if( orderUtils.UpDate_A_By_ID("f_price",paras) ){
                     ((Order) OrderTable.getSelectionModel().getSelectedItem()).setF_price(event.getNewValue().toString());
@@ -677,40 +677,40 @@ public class ManagerWindow {
 
 
 
-    //åˆå§‹åŒ–ComboBox
+    //³õÊ¼»¯ComboBox
     private void initFlightComboBox()
     {
         flightMap=new HashMap<>();
-        flightMap.put("èˆªç­ç¼–å·","f_id");
-        flightMap.put("èˆªç­å…¬å¸","f_com");
-        flightMap.put("æœºå‹","f_model");
-        flightMap.put("èµ·é£æ—¶é—´","f_stime");
-        flightMap.put("åˆ°è¾¾æ—¶é—´","f_etime");
-        flightMap.put("èµ·ç‚¹","f_start");
-        flightMap.put("ç»ˆç‚¹","f_dist");
-        flightMap.put("ä»·æ ¼","f_price");
-        flightMap.put("ä½™ç¥¨","f_left");
+        flightMap.put("º½°à±àºÅ","f_id");
+        flightMap.put("º½°à¹«Ë¾","f_com");
+        flightMap.put("»úĞÍ","f_model");
+        flightMap.put("Æğ·ÉÊ±¼ä","f_stime");
+        flightMap.put("µ½´ïÊ±¼ä","f_etime");
+        flightMap.put("Æğµã","f_start");
+        flightMap.put("ÖÕµã","f_dist");
+        flightMap.put("¼Û¸ñ","f_price");
+        flightMap.put("ÓàÆ±","f_left");
 
     }
 
     private void initUserComboBox(){
         userMap=new HashMap<>();
-        userMap.put("ç”¨æˆ·å","user");
-        userMap.put("å§“å","name");
-        userMap.put("èº«ä»½è¯","sfz");
-        userMap.put("ç”µè¯","phone");
-        userMap.put("ç”µå­é‚®ä»¶","email");
+        userMap.put("ÓÃ»§Ãû","user");
+        userMap.put("ĞÕÃû","name");
+        userMap.put("Éí·İÖ¤","sfz");
+        userMap.put("µç»°","phone");
+        userMap.put("µç×ÓÓÊ¼ş","email");
     }
 
     private void initOrderComboBox(){
         orderMap=new HashMap<>();
-        orderMap.put("è®¢å•ç¼–å·","orderid");
-        orderMap.put("èº«ä»½è¯","p_id");
-        orderMap.put("èˆªç­ç¼–å·","f_id");
-        orderMap.put("å§“å","p_name");
-        orderMap.put("èˆªç©ºå…¬å¸","f_com");
-        orderMap.put("èµ·ç‚¹","f_start");
-        orderMap.put("ç»ˆç‚¹","f_end");
+        orderMap.put("¶©µ¥±àºÅ","orderid");
+        orderMap.put("Éí·İÖ¤","p_id");
+        orderMap.put("º½°à±àºÅ","f_id");
+        orderMap.put("ĞÕÃû","p_name");
+        orderMap.put("º½¿Õ¹«Ë¾","f_com");
+        orderMap.put("Æğµã","f_start");
+        orderMap.put("ÖÕµã","f_end");
 
 
     }
@@ -755,13 +755,13 @@ public class ManagerWindow {
     private void Flight_Buttonevent() {
 
 
-        //æŸ¥è¯¢èˆªç­äº‹ä»¶
+        //²éÑ¯º½°àÊÂ¼ş
         button_searchflight.setOnAction(event -> {
-            //  è·å–è¦æ£€ç´¢çš„å±æ€§
+            //  »ñÈ¡Òª¼ìË÷µÄÊôĞÔ
             String attribute = flightMap.get(flightParams.getValue());
-            //è·å–è¦æ£€ç´¢çš„å…³é”®å­—
+            //»ñÈ¡Òª¼ìË÷µÄ¹Ø¼ü×Ö
             String keywords = "%" + searchFlightTextfield.getText() + "%";
-            //ä¼ å‚  æ‰§è¡ŒSQLè¯­å¥
+            //´«²Î  Ö´ĞĞSQLÓï¾ä
             List<Object> likeparams = new ArrayList<Object>();
             likeparams.add(keywords);
             List<Map<String, Object>> selectedlist = flightUtils.Select_Where_A_like_B(attribute, likeparams);
@@ -770,16 +770,16 @@ public class ManagerWindow {
 
         });
 
-        //æ·»åŠ èˆªç­äº‹ä»¶
+        //Ìí¼Óº½°àÊÂ¼ş
         addflight.setOnAction(event -> {
 
-            //è‡ªå®šä¹‰Dialog
+            //×Ô¶¨ÒåDialog
             Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setTitle("æ·»åŠ èˆªç­");
-            dialog.setHeaderText("è¯·å¡«å†™èˆªç­ä¿¡æ¯");
+            dialog.setTitle("Ìí¼Óº½°à");
+            dialog.setHeaderText("ÇëÌîĞ´º½°àĞÅÏ¢");
 
 
-            ButtonType loginButtonType = new ButtonType("ç¡®è®¤", ButtonBar.ButtonData.OK_DONE);
+            ButtonType loginButtonType = new ButtonType("È·ÈÏ", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 
             GridPane grid = new GridPane();
@@ -788,52 +788,52 @@ public class ManagerWindow {
             grid.setPadding(new Insets(20, 70, 10, 10));
 
             TextField f_id = new TextField();
-            f_id.setPromptText("èˆªç­ç¼–å·");
+            f_id.setPromptText("º½°à±àºÅ");
             TextField f_com = new TextField();
-            f_com.setPromptText("èˆªç©ºå…¬å¸");
+            f_com.setPromptText("º½¿Õ¹«Ë¾");
 
             TextField f_model = new TextField();
-            f_model.setPromptText("æœºå‹");
+            f_model.setPromptText("»úĞÍ");
 
             TextField f_stime = new TextField();
-            f_stime.setPromptText("èµ·é£æ—¶é—´");
+            f_stime.setPromptText("Æğ·ÉÊ±¼ä");
 
             TextField f_etime = new TextField();
-            f_etime.setPromptText("åˆ°è¾¾æ—¶é—´");
+            f_etime.setPromptText("µ½´ïÊ±¼ä");
 
             TextField f_start = new TextField();
-            f_start.setPromptText("èµ·ç‚¹");
+            f_start.setPromptText("Æğµã");
 
             TextField f_dist = new TextField();
-            f_dist.setPromptText("ç»ˆç‚¹");
+            f_dist.setPromptText("ÖÕµã");
 
             TextField f_price = new TextField();
-            f_price.setPromptText("ä»·æ ¼");
+            f_price.setPromptText("¼Û¸ñ");
 
             TextField f_left = new TextField();
-            f_left.setPromptText("ç¥¨æ•°");
+            f_left.setPromptText("Æ±Êı");
 
-            grid.add(new Label("èˆªç­ç¼–å·:"), 0, 0);
+            grid.add(new Label("º½°à±àºÅ:"), 0, 0);
             grid.add(f_id, 1, 0);
-            grid.add(new Label("èˆªç©ºå…¬å¸:"), 0, 1);
+            grid.add(new Label("º½¿Õ¹«Ë¾:"), 0, 1);
             grid.add(f_com, 1, 1);
-            grid.add(new Label("æœºå‹:"), 0, 2);
+            grid.add(new Label("»úĞÍ:"), 0, 2);
             grid.add(f_model, 1, 2);
-            grid.add(new Label("èµ·é£æ—¶é—´:"), 0, 3);
+            grid.add(new Label("Æğ·ÉÊ±¼ä:"), 0, 3);
             grid.add(f_stime, 1, 3);
-            grid.add(new Label("åˆ°è¾¾æ—¶é—´:"), 0, 4);
+            grid.add(new Label("µ½´ïÊ±¼ä:"), 0, 4);
             grid.add(f_etime, 1, 4);
 
-            grid.add(new Label("èµ·ç‚¹:"), 0, 5);
+            grid.add(new Label("Æğµã:"), 0, 5);
             grid.add(f_start, 1, 5);
 
-            grid.add(new Label("ç»ˆç‚¹:"), 0, 6);
+            grid.add(new Label("ÖÕµã:"), 0, 6);
             grid.add(f_dist, 1, 6);
 
-            grid.add(new Label("ä»·æ ¼:"), 0, 7);
+            grid.add(new Label("¼Û¸ñ:"), 0, 7);
             grid.add(f_price, 1, 7);
 
-            grid.add(new Label("ç¥¨æ•°:"), 0, 8);
+            grid.add(new Label("Æ±Êı:"), 0, 8);
             grid.add(f_left, 1, 8);
 
 
@@ -841,13 +841,13 @@ public class ManagerWindow {
 
             dialog.getDialogPane().setContent(grid);
 
-// é»˜è®¤å…‰æ ‡åœ¨ä¸Š
+// Ä¬ÈÏ¹â±êÔÚÉÏ
             Platform.runLater(() -> f_id.requestFocus());
 
             Optional<ButtonType> result = dialog.showAndWait();
 
 
-            //å¦‚æœæ˜¯ç¡®è®¤é”®
+            //Èç¹ûÊÇÈ·ÈÏ¼ü
             if (      result.get().getButtonData()==ButtonBar.ButtonData.OK_DONE)
             {
                 Flight tmp = new Flight();
@@ -871,7 +871,7 @@ public class ManagerWindow {
                 paras.add(tmp.getDist());
                 paras.add(tmp.getPrice());
                 paras.add(tmp.getLeft());
-                //è‹¥æ•°æ®åº“æ·»åŠ æˆåŠŸ åˆ™æ˜¾ç¤ºåˆ°åˆ—è¡¨
+                //ÈôÊı¾İ¿âÌí¼Ó³É¹¦ ÔòÏÔÊ¾µ½ÁĞ±í
                 if (flightUtils.InsertFlight(paras)) {
                     FlightObList.add(tmp);
                 }
@@ -879,11 +879,11 @@ public class ManagerWindow {
 
         });
 
-        //åˆ é™¤é€‰ä¸­èˆªç­äº‹ä»¶
+        //É¾³ıÑ¡ÖĞº½°àÊÂ¼ş
         deleteflight.setOnAction(event -> {
             Flight selected = (Flight) FlightTable.getSelectionModel().getSelectedItem();
             if (selected != null) {
-                //è‹¥æ•°æ®åº“åˆ é™¤æˆåŠŸ é‚£å°±åˆ é™¤
+                //ÈôÊı¾İ¿âÉ¾³ı³É¹¦ ÄÇ¾ÍÉ¾³ı
                 List<Object> paras = new ArrayList<Object>();
                 paras.add(selected.getId());
                 if (flightUtils.DeleteFlightById(paras))
@@ -911,12 +911,12 @@ public class ManagerWindow {
     private  void User_Buttonevent(){
        button_searchuser.setOnAction(event -> {
 
-           //  è·å–è¦æ£€ç´¢çš„å±æ€§
+           //  »ñÈ¡Òª¼ìË÷µÄÊôĞÔ
            String attribute=userMap.get(userparams.getValue());
-           //è·å–è¦æ£€ç´¢çš„å…³é”®å­—
+           //»ñÈ¡Òª¼ìË÷µÄ¹Ø¼ü×Ö
            String keywords = "%" + searchUserTextfield.getText() + "%";
 
-           //ä¼ å‚  æ‰§è¡ŒSQLè¯­å¥
+           //´«²Î  Ö´ĞĞSQLÓï¾ä
            List<Object> likeparams = new ArrayList<Object>();
            likeparams.add(keywords);
            List<Map<String, Object>> selectedlist = userUtils.Select_Where_A_like_B(attribute,likeparams);
@@ -938,11 +938,11 @@ public class ManagerWindow {
 
        });
 
-       //åˆ é™¤ç”¨æˆ·
+       //É¾³ıÓÃ»§
        deleteOrder.setOnAction(event -> {
            Order selected = (Order) OrderTable.getSelectionModel().getSelectedItem();
            if (selected != null) {
-               //è‹¥æ•°æ®åº“åˆ é™¤æˆåŠŸ é‚£å°±åˆ é™¤
+               //ÈôÊı¾İ¿âÉ¾³ı³É¹¦ ÄÇ¾ÍÉ¾³ı
                List<Object> paras = new ArrayList<Object>();
                paras.add(selected.getOrderid() );
 
@@ -960,11 +960,11 @@ public class ManagerWindow {
     private void Order_Buttonevent(){
         button_searchorder.setOnAction(event -> {
 
-            //  è·å–è¦æ£€ç´¢çš„å±æ€§
+            //  »ñÈ¡Òª¼ìË÷µÄÊôĞÔ
             String attribute=orderMap.get(orderparams.getValue());
-            //è·å–è¦æ£€ç´¢çš„å…³é”®å­—
+            //»ñÈ¡Òª¼ìË÷µÄ¹Ø¼ü×Ö
             String keywords = "%" + searchOrderTextfield.getText() + "%";
-            //ä¼ å‚  æ‰§è¡ŒSQLè¯­å¥
+            //´«²Î  Ö´ĞĞSQLÓï¾ä
             List<Object> likeparams = new ArrayList<Object>();
             likeparams.add(keywords);
             List<Map<String, Object>> list = orderUtils.Select_Where_A_like_B(attribute,likeparams);
@@ -974,11 +974,11 @@ public class ManagerWindow {
 
         });
 
-        //åˆ é™¤ç”¨æˆ·
+        //É¾³ıÓÃ»§
         deleteuser.setOnAction(event -> {
             User selected = (User) UserTable.getSelectionModel().getSelectedItem();
             if (selected != null) {
-                //è‹¥æ•°æ®åº“åˆ é™¤æˆåŠŸ é‚£å°±åˆ é™¤
+                //ÈôÊı¾İ¿âÉ¾³ı³É¹¦ ÄÇ¾ÍÉ¾³ı
                 List<Object> paras = new ArrayList<Object>();
                 paras.add(selected.getIdentity() );
 
@@ -990,7 +990,7 @@ public class ManagerWindow {
 
     }
 
-    //æ ¼å¼åŒ–æ—¥æœŸ
+    //¸ñÊ½»¯ÈÕÆÚ
     String CutPoint0(String time)
     {
          return time.substring(0,time.length()-5);

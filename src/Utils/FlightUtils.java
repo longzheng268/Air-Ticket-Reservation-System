@@ -12,7 +12,7 @@ public class FlightUtils extends MysqlUtils{
     }
 
 
-    /* æ·»åŠ ä¸€ä¸ªèˆªç­ å‚æ•°ä¸ºListæ•°ç»„*/
+    /* Ìí¼ÓÒ»¸öº½°à ²ÎÊıÎªListÊı×é*/
     public  boolean InsertFlight(List<Object> params)
     {
 
@@ -27,7 +27,7 @@ public class FlightUtils extends MysqlUtils{
         }
     }
 
-    /*  åˆ é™¤ä¸€ä¸ªèˆªç­ é€šè¿‡ID */
+    /*  É¾³ıÒ»¸öº½°à Í¨¹ıID */
     public boolean DeleteFlightById(List<Object>params)
     {
         String sql="DELETE FROM `airlineticket`.`flight` WHERE `f_id`=?";
@@ -42,7 +42,7 @@ public class FlightUtils extends MysqlUtils{
 
     }
 
-    /* æ›´æ–°èˆªç­ä¿¡æ¯é€šè¿‡ID*/
+    /* ¸üĞÂº½°àĞÅÏ¢Í¨¹ıID*/
     public boolean UpDate_A_By_ID (String attr ,List <Object> params)
     {
 
@@ -58,7 +58,7 @@ public class FlightUtils extends MysqlUtils{
         }
     }
 
-    //æ¨¡ç³ŠæŸ¥è¯¢èˆªç­  attributeå±æ€§ parasä¸ºå‚æ•°
+    //Ä£ºı²éÑ¯º½°à  attributeÊôĞÔ parasÎª²ÎÊı
     public List<Map<String,Object>> Select_Where_A_like_B(String attribute,List<Object> paras)
     {            // like '%?%'
         String sql="SELECT * FROM airlineticket.flight where "+attribute+" like ?";
@@ -85,7 +85,7 @@ public class FlightUtils extends MysqlUtils{
         return  list;
 
     }
-    //æŸ¥è¯¢å…¨éƒ¨èˆªç­
+    //²éÑ¯È«²¿º½°à
      public List<Map<String, Object>> SelectAllFlight()
      {
           String sql ="SELECT * FROM airlineticket.flight";

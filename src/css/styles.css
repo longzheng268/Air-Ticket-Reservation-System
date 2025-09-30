@@ -1,0 +1,30 @@
+.root {
+    -fx-font-size: 20px;
+}
+
+#Button_login {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 45px;
+}
+
+#Button_regist, #Button_fpw {
+    -fx-pref-width: 150px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 15px;
+}
+
+#tf_username, #tf_password {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 45px;
+    -fx-font-size: 20px;
+}
+
+#user, #admin {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 15px;
+}
+
+.label {
+    -fx-font-size: 30px;
+}

@@ -1,5 +1,4 @@
 package Window;
-
 import Model.Flight;
 import Model.Order;
 import Model.Passenger;
@@ -71,29 +70,29 @@ public class UserWindow {
      private ObservableList<Order> OrderObList=FXCollections.observableArrayList();
 
 
-     private MenuItem bookflight=new MenuItem("è®¢ç¥¨");
-     private MenuItem addpsg=new MenuItem("æ·»åŠ ä¹˜æœºäºº");
-    private MenuItem deleltepsg=new MenuItem("åˆ é™¤ä¹˜æœºäºº");
-    private MenuItem deleteorder=new MenuItem("é€€è®¢");
+     private MenuItem bookflight=new MenuItem("¶©Æ±");
+     private MenuItem addpsg=new MenuItem("Ìí¼Ó³Ë»úÈË");
+    private MenuItem deleltepsg=new MenuItem("É¾³ı³Ë»úÈË");
+    private MenuItem deleteorder=new MenuItem("ÍË¶©");
 
-    /*  æ„é€ å‡½æ•°*/
+    /*  ¹¹Ôìº¯Êı*/
     public UserWindow(String user){
         useraccount=user;
 
         UserStage=new Stage();
         try{
-            root = FXMLLoader.load(getClass().getResource("../fxml/user.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../fxml/User.fxml"));
         } catch (Exception e){
             e.printStackTrace();
         }
 
         Scene scene=new Scene(root,1048,768);
-        UserStage.setTitle("æ¬¢è¿,"+user);
+        UserStage.setTitle("»¶Ó­,"+user);
         UserStage.setScene(scene);
         UserStage.initStyle(StageStyle.UTILITY);
         UserStage.show();
 
-        /* è¿æ¥æ•°æ®åº“*/
+        /* Á¬½ÓÊı¾İ¿â*/
         flightUtils=new FlightUtils();
         passengerUtils=new PassengerUtils();
         orderUtils=new OrderUtils();
@@ -123,8 +122,8 @@ public class UserWindow {
         FlightTable=(TableView) root.lookup("#flight_table");
         //FlightObList=FXCollections.observableArrayList();
 
-        List<String> cities= Arrays.asList("åŒ—äº¬","ä¸Šæµ·","æˆéƒ½","æ·±åœ³","é•¿æ²™","é‡åº†","å¹¿å·","å“ˆå°”æ»¨","æµ·å£","æ­å·","æ˜†æ˜",
-                "å—äº¬","ä¸‰äºš","æ²ˆé˜³","æ­¦æ±‰","ä¹Œé²æœ¨é½","å¦é—¨","è¥¿å®‰", "éƒ‘å·");
+        List<String> cities= Arrays.asList("±±¾©","ÉÏº£","³É¶¼","ÉîÛÚ","³¤É³","ÖØÇì","¹ãÖİ","¹ş¶û±õ","º£¿Ú","º¼Öİ","À¥Ã÷",
+                "ÄÏ¾©","ÈıÑÇ","ÉòÑô","Îäºº","ÎÚÂ³Ä¾Æë","ÏÃÃÅ","Î÷°²", "Ö£Öİ");
         start.setItems(FXCollections.observableArrayList(cities));
         end.setItems(FXCollections.observableArrayList(cities));
 
@@ -141,8 +140,8 @@ public class UserWindow {
 
         for(int i=0;i<flight_observableList.size();i++)
         {
-            //ç»‘å®š
-            flight_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Flight,String>(flightpara[i])); //ä¸Flightä¸­çš„å±æ€§å…³è”
+            //°ó¶¨
+            flight_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Flight,String>(flightpara[i])); //ÓëFlightÖĞµÄÊôĞÔ¹ØÁª
         }
         List<Map<String,Object>> selectedlist=flightUtils.SelectAllFlight();
 
@@ -154,7 +153,7 @@ public class UserWindow {
     void RefreshFlightTable( List<Map<String,Object>> selectedlist){
         FlightObList.clear();
         for (int i = 0; i < selectedlist.size(); i++) {
-            //å‰©ä½™ç¥¨æ•°å¤§äº0 æ‰æ·»åŠ è¿›æ¥
+            //Ê£ÓàÆ±Êı´óÓÚ0 ²ÅÌí¼Ó½øÀ´
             if((Integer)selectedlist.get(i).get("f_left")>0) {
                 Flight tmp = new Flight();
                 tmp.setId(selectedlist.get(i).get("f_id").toString());
@@ -187,20 +186,20 @@ public class UserWindow {
 
       ObservableList<TableColumn> psg_observableList=PsgTable.getColumns();
 
-          //ç»‘å®š
+          //°ó¶¨
       for(int i=0;i<psg_observableList.size();i++) {
-          psg_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Passenger, String>(psgpara[i])); //ä¸Flightä¸­çš„å±æ€§å…³è”
-          psg_observableList.get(i).setCellFactory(TextFieldTableCell.<Passenger>forTableColumn());  // è®¾ç½®æˆè¡¨æ ¼å¯ç¼–è¾‘
+          psg_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Passenger, String>(psgpara[i])); //ÓëFlightÖĞµÄÊôĞÔ¹ØÁª
+          psg_observableList.get(i).setCellFactory(TextFieldTableCell.<Passenger>forTableColumn());  // ÉèÖÃ³É±í¸ñ¿É±à¼­
       }
 
       psg_observableList.get(0).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
           @Override
           public void handle(TableColumn.CellEditEvent event) {
-              // ç•Œé¢ä¿®æ”¹ä¹˜æœºäººä¿¡æ¯
-              String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-              List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+              // ½çÃæĞŞ¸Ä³Ë»úÈËĞÅÏ¢
+              String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+              List<Object> paras=new ArrayList<Object>();      //´«²Î
               paras.add(a_value);
-              paras.add( ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).getId()); //è·å–ä¹˜æœºäººid
+              paras.add( ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).getId()); //»ñÈ¡³Ë»úÈËid
 
               if( passengerUtils.UpDate_A_By_ID("name",paras) ){
                   ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).setName(event.getNewValue().toString());
@@ -211,11 +210,11 @@ public class UserWindow {
       psg_observableList.get(1).setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
           @Override
           public void handle(TableColumn.CellEditEvent event) {
-              // ç•Œé¢ä¿®æ”¹ä¹˜æœºäººä¿¡æ¯
-              String a_value=event.getNewValue().toString();  //è·å–æ–‡æœ¬æ¡†ä¿®æ”¹çš„å€¼
-              List<Object> paras=new ArrayList<Object>();      //ä¼ å‚
+              // ½çÃæĞŞ¸Ä³Ë»úÈËĞÅÏ¢
+              String a_value=event.getNewValue().toString();  //»ñÈ¡ÎÄ±¾¿òĞŞ¸ÄµÄÖµ
+              List<Object> paras=new ArrayList<Object>();      //´«²Î
               paras.add(a_value);
-              paras.add( ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).getId()); //è·å–ä¹˜æœºäººid
+              paras.add( ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).getId()); //»ñÈ¡³Ë»úÈËid
 
               if( passengerUtils.UpDate_A_By_ID("id",paras) ){
                   ((Passenger) PsgTable.getSelectionModel().getSelectedItem()).setId(event.getNewValue().toString());
@@ -254,14 +253,14 @@ public class UserWindow {
       });
 
       button_searchflight.setOnAction(event -> {
-          String start_p="%"+start.getEditor().getText()+"%";  //ä»æ§ä»¶è·å– èµ·ç‚¹ ç»ˆç‚¹
+          String start_p="%"+start.getEditor().getText()+"%";  //´Ó¿Ø¼ş»ñÈ¡ Æğµã ÖÕµã
         String end_p="%"+end.getEditor().getText()+"%";
         String f_time="%"+datePicker.getEditor().getText()+"%";
 
         System.out.println(start_p);
         System.out.println(end_p);
 
-        //ä¼ é€’å‚æ•°
+        //´«µİ²ÎÊı
         List<Object> params=new ArrayList<Object>();
         params.add(start_p);
 
@@ -280,16 +279,16 @@ public class UserWindow {
           Flight selectedflight = (Flight) FlightTable.getSelectionModel().getSelectedItem();
           Passenger selectedpsg = (Passenger) PsgTable.getSelectionModel().getSelectedItem();
 
-          // å¦‚æœå‰©ä½™ç¥¨æ•°å¤§äº0
+          // Èç¹ûÊ£ÓàÆ±Êı´óÓÚ0
           if(selectedflight.getLeft()>0)
           {
           List<Object> params=new ArrayList<Object>();
 
-          //ç”Ÿæˆ10ä½éšæœºæ•°
+          //Éú³É10Î»Ëæ»úÊı
           Random r = new Random();
           long num = Math.abs(r.nextLong() % 10000000000L);
-          String orderid=Long.toString(num);
-         //æ·»åŠ å‚æ•°
+          String orderid = Long.toString(num);
+         //Ìí¼Ó²ÎÊı
           params.add(orderid);
           params.add(selectedpsg.getName());
           params.add(selectedpsg.getId());
@@ -305,7 +304,7 @@ public class UserWindow {
 
           orderUtils.InsertOrder(params);
 
-          //æ›´æ–°èˆªç­å‰©ä½™ç¥¨æ•°
+          //¸üĞÂº½°àÊ£ÓàÆ±Êı
 
           List<Object> params2=new ArrayList<Object>();
           params2.add(selectedflight.getLeft()-1);
@@ -316,7 +315,7 @@ public class UserWindow {
               List<Map<String,Object>> selectedlist=flightUtils.SelectAllFlight();
               RefreshFlightTable(selectedlist);
 
-         /*   åˆ·æ–°æˆ‘çš„è®¢å•åˆ—è¡¨*/
+         /*   Ë¢ĞÂÎÒµÄ¶©µ¥ÁĞ±í*/
 
                   Order tmp=new Order();
                   tmp.setOrderid(orderid);
@@ -334,7 +333,7 @@ public class UserWindow {
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
               alert.setTitle(" ");
               alert.setHeaderText("");
-              alert.setContentText("è®¢ç¥¨æˆåŠŸ,è¯·åˆ°æˆ‘çš„è®¢å•æŸ¥çœ‹è¯¦æƒ…");
+              alert.setContentText("¶©Æ±³É¹¦,Çëµ½ÎÒµÄ¶©µ¥²é¿´ÏêÇé");
 
               alert.showAndWait();
 
@@ -356,7 +355,7 @@ public class UserWindow {
       String []orderpara=new String[]{"orderid","p_name","p_id","f_id","f_com","f_model","f_stime","f_etime","f_start","f_end","f_price"};
       ObservableList<TableColumn> Order_observableList=OrderTable.getColumns();
       for(int i=0;i<Order_observableList.size();i++) {
-          Order_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Order,String>(orderpara[i])); //ä¸Orderä¼—çš„å±æ€§å…³è”
+          Order_observableList.get(i).setCellValueFactory(new PropertyValueFactory<Order,String>(orderpara[i])); //ÓëOrderÖÚµÄÊôĞÔ¹ØÁª
       }
 
       List<Object> params = new ArrayList<Object>();
@@ -392,7 +391,7 @@ public class UserWindow {
 
        Order selected = (Order) OrderTable.getSelectionModel().getSelectedItem();
        if (selected != null) {
-           //è‹¥æ•°æ®åº“åˆ é™¤æˆåŠŸ é‚£å°±åˆ é™¤
+           //ÈôÊı¾İ¿âÉ¾³ı³É¹¦ ÄÇ¾ÍÉ¾³ı
            List<Object> paras = new ArrayList<Object>();
            paras.add(selected.getOrderid() );
 
@@ -401,7 +400,7 @@ public class UserWindow {
            }
        }
 
-     //è·å– è¦é€€è®¢çš„èˆªç­ å‰©ä½™ç¥¨æ•°
+     //»ñÈ¡ ÒªÍË¶©µÄº½°à Ê£ÓàÆ±Êı
        List<Object> params3 = new ArrayList<Object>();
         params3.add(selected.getF_id());
 
@@ -423,7 +422,7 @@ public class UserWindow {
        Alert alert = new Alert(Alert.AlertType.INFORMATION);
        alert.setTitle(" ");
        alert.setHeaderText("");
-       alert.setContentText("é€€è®¢æˆåŠŸ");
+       alert.setContentText("ÍË¶©³É¹¦");
 
        alert.showAndWait();
 
@@ -435,13 +434,13 @@ public class UserWindow {
   void PSG_Buttonevent(){
 
         addpsg.setOnAction(event -> {
-            //è‡ªå®šä¹‰Dialog
+            //×Ô¶¨ÒåDialog
             Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setTitle("æ·»åŠ ä¹˜æœºäººä¿¡æ¯");
-            dialog.setHeaderText("è¯·å¡«å†™ä¹˜æœºäººä¿¡æ¯");
+            dialog.setTitle("Ìí¼Ó³Ë»úÈËĞÅÏ¢");
+            dialog.setHeaderText("ÇëÌîĞ´³Ë»úÈËĞÅÏ¢");
 
 
-            ButtonType loginButtonType = new ButtonType("ç¡®è®¤", ButtonBar.ButtonData.OK_DONE);
+            ButtonType loginButtonType = new ButtonType("È·ÈÏ", ButtonBar.ButtonData.OK_DONE);
             dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 
             GridPane grid = new GridPane();
@@ -450,26 +449,26 @@ public class UserWindow {
             grid.setPadding(new Insets(20, 150, 10, 10));
 
             TextField name = new TextField();
-            name.setPromptText("å§“å");
+            name.setPromptText("ĞÕÃû");
             TextField pid = new TextField();
-            pid.setPromptText("èº«ä»½è¯");
+            pid.setPromptText("Éí·İÖ¤");
 
 
 
-            grid.add(new Label("ä¹˜æœºäººå§“å:"), 0, 0);
+            grid.add(new Label("³Ë»úÈËĞÕÃû:"), 0, 0);
             grid.add(name, 1, 0);
-            grid.add(new Label("ä¹˜æœºäººèº«ä»½è¯:"), 0, 1);
+            grid.add(new Label("³Ë»úÈËÉí·İÖ¤:"), 0, 1);
             grid.add(pid, 1, 1);
 
 
             dialog.getDialogPane().setContent(grid);
 
-// é»˜è®¤å…‰æ ‡åœ¨ä¸Š
+// Ä¬ÈÏ¹â±êÔÚÉÏ
             Platform.runLater(() -> name.requestFocus());
 
             Optional<ButtonType> result = dialog.showAndWait();
 
-            //å¦‚æœæ˜¯ç¡®è®¤é”®
+            //Èç¹ûÊÇÈ·ÈÏ¼ü
             if (      result.get().getButtonData()==ButtonBar.ButtonData.OK_DONE)
             {
                 List<Object> params = new ArrayList<Object>();
@@ -542,7 +541,7 @@ public class UserWindow {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(" ");
         alert.setHeaderText("");
-        alert.setContentText("ä¿å­˜ä¿¡æ¯æˆåŠŸ");
+        alert.setContentText("±£´æĞÅÏ¢³É¹¦");
 
         alert.showAndWait();
     });
@@ -553,7 +552,7 @@ public class UserWindow {
         paras.add(useraccount);
         List<Map<String, Object>> selectedlist= userUtils.Select_User_By_Account(paras);
 
-        // éªŒè¯åŸå¯†ç 
+        // ÑéÖ¤Ô­ÃÜÂë
         String passwd=selectedlist.get(0).get("pass").toString();
         if(  passwd.equals(OriginPwd.getText() ) ){
             System.out.println(OriginPwd.getText().equals(ConfirmPwd.getText()));
@@ -565,7 +564,7 @@ public class UserWindow {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle(" ");
                 alert.setHeaderText("");
-                alert.setContentText("ä¿®æ”¹å¯†ç æˆåŠŸ");
+                alert.setContentText("ĞŞ¸ÄÃÜÂë³É¹¦");
 
                 alert.showAndWait();
             }
@@ -574,7 +573,7 @@ public class UserWindow {
             Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("");
             alert.setHeaderText("");
-            alert.setContentText("åŸå¯†ç é”™è¯¯");
+            alert.setContentText("Ô­ÃÜÂë´íÎó");
 
             alert.showAndWait();
         }
@@ -584,7 +583,7 @@ public class UserWindow {
 
   }
 
-  /*   æ”¹å˜datePickerçš„æ ¼å¼ */
+  /*   ¸Ä±ädatePickerµÄ¸ñÊ½ */
   void dateConvert(){
       String pattern="yyyy-MM-dd";
       DateTimeFormatter.ofPattern(pattern);
@@ -612,7 +611,7 @@ public class UserWindow {
       datePicker.setConverter(converter);
   }
 
-  /*  æ”¹å˜æ—¶é—´æ ¼å¼*/
+  /*  ¸Ä±äÊ±¼ä¸ñÊ½*/
     String CutPoint0(String time)
     {
         return time.substring(0,time.length()-5);

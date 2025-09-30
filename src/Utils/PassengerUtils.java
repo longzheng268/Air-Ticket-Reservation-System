@@ -10,7 +10,7 @@ public class PassengerUtils extends MysqlUtils {
         this.getConnection();
     }
 
-    // 鏌ヨ鐢ㄦ埛鐨勫叏閮ㄤ箻鏈轰汉
+    // 查询用户的全部乘机人
      public List<Map<String,Object>> SelectAllPsg(String user)
      {
          String sql="SELECT * FROM airlineticket.passenger where user='"+user+"'";
@@ -25,7 +25,7 @@ public class PassengerUtils extends MysqlUtils {
          return list;
      }
 
-    /* 娣诲姞涓�涓箻鏈轰汉 鍙傛暟涓篖ist鏁扮粍*/
+    /* 添加一个乘机人 参数为List数组*/
     public  boolean InsertPsg(List<Object> params)
     {
 
@@ -42,7 +42,7 @@ public class PassengerUtils extends MysqlUtils {
 
 
 
-    /*  鍒犻櫎涓�涓箻鏈轰汉 閫氳繃ID */
+    /*  删除一个乘机人 通过ID */
     public boolean DeletePsgById(List<Object>params)
     {
         String sql="DELETE FROM `airlineticket`.`passenger` WHERE `id`=?";
@@ -70,8 +70,5 @@ public class PassengerUtils extends MysqlUtils {
             return false;
         }
     }
-
-
-
 
 }

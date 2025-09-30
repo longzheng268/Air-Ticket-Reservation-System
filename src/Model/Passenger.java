@@ -31,6 +31,4 @@ public class Passenger {
         this.id.set(id);
     }
 
-
-
 }

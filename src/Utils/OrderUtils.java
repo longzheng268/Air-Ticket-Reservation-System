@@ -11,7 +11,7 @@ public class OrderUtils extends MysqlUtils {
             this.getConnection();
         }
 
-    /* æ·»åŠ ä¸€ä¸ªèˆªç­ å‚æ•°ä¸ºListæ•°ç»„*/
+    /* Ìí¼ÓÒ»¸öº½°à ²ÎÊıÎªListÊı×é*/
     public  boolean InsertOrder(List<Object> params)
     {
 
@@ -26,7 +26,7 @@ public class OrderUtils extends MysqlUtils {
         }
     }
 
-        //æŸ¥è¯¢å…¨éƒ¨è®¢å•
+        //²éÑ¯È«²¿¶©µ¥
         public List<Map<String, Object>> SelectAllOrder()
         {
             String sql ="SELECT * FROM airlineticket.order";
@@ -42,7 +42,7 @@ public class OrderUtils extends MysqlUtils {
 
         }
 
-        //æŸ¥è¯¢ç”¨æˆ·è®¢å•
+        //²éÑ¯ÓÃ»§¶©µ¥
     public List<Map<String, Object>> SelectAllOrderByuser(List<Object>params)
     {
         String sql ="SELECT * FROM airlineticket.order  WHERE `user`=?";
@@ -59,7 +59,7 @@ public class OrderUtils extends MysqlUtils {
     }
 
 
-    //æ¨¡ç³ŠæŸ¥è¯¢èˆªç­  attributeå±æ€§ parasä¸ºå‚æ•°
+    //Ä£ºı²éÑ¯º½°à  attributeÊôĞÔ parasÎª²ÎÊı
     public List<Map<String,Object>> Select_Where_A_like_B(String attribute,List<Object> paras)
     {            // like '%?%'
         String sql="SELECT * FROM airlineticket.order where "+attribute+" like ?";
@@ -73,7 +73,7 @@ public class OrderUtils extends MysqlUtils {
         return  list;
     }
 
-    //åˆ é™¤è®¢å•
+    //É¾³ı¶©µ¥
     public boolean DeleteOrderById(List<Object>params)
     {
         String sql="DELETE FROM `airlineticket`.`order` WHERE `orderid`=?";
@@ -89,7 +89,7 @@ public class OrderUtils extends MysqlUtils {
     }
 
 
-    /* æ›´æ–°è®¢å•ä¿¡æ¯é€šè¿‡ID*/
+    /* ¸üĞÂ¶©µ¥ĞÅÏ¢Í¨¹ıID*/
     public boolean UpDate_A_By_ID (String attr ,List <Object> params)
     {
 
@@ -103,6 +103,4 @@ public class OrderUtils extends MysqlUtils {
             return false;
         }
     }
-
-
 }
