@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JavaFX (JDK 8自带，无需额外依赖)
+    // JFoenix
+    implementation 'com.jfoenix:jfoenix:8.0.4'
+    // MySQL Connector/J
+    implementation 'mysql:mysql-connector-java:8.0.33'
+}

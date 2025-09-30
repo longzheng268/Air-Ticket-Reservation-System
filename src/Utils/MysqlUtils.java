@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public class MysqlUtils {
-       /*  æ•°æ®åº“è¿æ¥ä¿¡æ¯ */
-          private static  final String DRIVER="com.mysql.jdbc.Driver";
-          //? è¿™é‡ŒæŒ‡æ˜ç¼–ç æ ¼å¼å¹¶ä¸”ä¸ä½¿ç”¨ssl
-          private static  final String URL="jdbc:mysql://localhost:3306/airlineticket?useUnicode=true&characterEncoding=utf-8&useSSL=false";
-          private static  final String USERNAME="root";
-          private static  final String PASSWORD="123456";
+       /*  Êı¾İ¿âÁ¬½ÓĞÅÏ¢ */
+          //private static  final String DRIVER="com.mysql.jdbc.Driver";
+          private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+          //? ÕâÀïÖ¸Ã÷±àÂë¸ñÊ½²¢ÇÒ²»Ê¹ÓÃssl
+          private static  final String URL="jdbc:mysql://Êı¾İ¿âµØÖ·:Êı¾İ¿â¶Ë¿Ú/Air-Ticket-Reservation-System?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+          private static  final String USERNAME="Air-Ticket-Reservation-System";
+          private static  final String PASSWORD="Air-Ticket-Reservation-System";
 
           private Connection connection;
           private PreparedStatement preparedStatement;
@@ -19,14 +20,14 @@ public class MysqlUtils {
 
           public MysqlUtils(){
               try{
-                  //æ³¨å†ŒJDBCé©±åŠ¨
+                  //×¢²áJDBCÇı¶¯
                   Class.forName(DRIVER);
               }
                  catch (Exception e){
                    e.printStackTrace();
                  }
           }
-          //è·å–è¿æ¥
+          //»ñÈ¡Á¬½Ó
         public void getConnection(){
               try{
                   connection=DriverManager.getConnection(URL,USERNAME,PASSWORD);
@@ -35,7 +36,7 @@ public class MysqlUtils {
                 e.printStackTrace();
               }
         }
-          //å…³é—­è¿æ¥
+          //¹Ø±ÕÁ¬½Ó
         public void closeConnection(){
               try{
               connection.close();}
@@ -44,7 +45,7 @@ public class MysqlUtils {
               }
         }
 
-        /*  å®ç°å¢ã€åˆ ã€æ”¹*/
+        /*  ÊµÏÖÔö¡¢É¾¡¢¸Ä*/
     public boolean updateByPreparedStatement(String sql, List<Object>params)throws SQLException{
         boolean flag = false;
         int result = -1;
@@ -55,7 +56,7 @@ public class MysqlUtils {
                 preparedStatement.setObject(index++, params.get(i));
             }
         }
-        result = preparedStatement.executeUpdate();  //è¿”å›å—å½±å“çš„è¡Œæ•°
+        result = preparedStatement.executeUpdate();  //·µ»ØÊÜÓ°ÏìµÄĞĞÊı
         flag = result > 0 ? true : false;
         return flag;
     }
@@ -63,24 +64,24 @@ public class MysqlUtils {
 
 
 
-       /*æŸ¥è¯¢å¤šæ¡è®°å½•*/
+       /*²éÑ¯¶àÌõ¼ÇÂ¼*/
     public List<Map<String, Object>> findModeResult(String sql, List<Object> params) throws SQLException{
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         int index = 1;
         preparedStatement = connection.prepareStatement(sql);
         if(params != null && !params.isEmpty()){
             for(int i = 0; i<params.size(); i++){
-                preparedStatement.setObject(index++, params.get(i));  //å¡«ä¸ŠSQLçš„?
+                preparedStatement.setObject(index++, params.get(i));  //ÌîÉÏSQLµÄ?
             }
         }
         resultSet = preparedStatement.executeQuery();
 
         ResultSetMetaData metaData = resultSet.getMetaData();
-        int cols_len = metaData.getColumnCount();      //è·å–ResultSetæœ‰å¤šå°‘åˆ—
+        int cols_len = metaData.getColumnCount();      //»ñÈ¡ResultSetÓĞ¶àÉÙÁĞ
 
         while(resultSet.next()){
             Map<String, Object> map = new HashMap<String, Object>();
-            for(int i=0; i<cols_len; i++){                    //å°†ä¸€æ¡è®°å½•è£…å…¥list
+            for(int i=0; i<cols_len; i++){                    //½«Ò»Ìõ¼ÇÂ¼×°Èëlist
                 String cols_name = metaData.getColumnName(i+1);
                 Object cols_value = resultSet.getObject(cols_name);
                 if(cols_value == null){
@@ -92,11 +93,4 @@ public class MysqlUtils {
         }
         return list;
     }
-
-
-
-
-
-
-
 }
