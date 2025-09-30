@@ -10,7 +10,7 @@ public class MysqlUtils {
           //private static  final String DRIVER="com.mysql.jdbc.Driver";
           private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
           //? 这里指明编码格式并且不使用ssl
-          private static  final String URL="jdbc:mysql://数据库地址:数据库端口/Air-Ticket-Reservation-System?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+          private static  final String URL="jdbc:mysql://你的数据库地址:你的数据库端口/Air-Ticket-Reservation-System?useUnicode=true&characterEncoding=utf-8&useSSL=false";
           private static  final String USERNAME="Air-Ticket-Reservation-System";
           private static  final String PASSWORD="Air-Ticket-Reservation-System";
 
